@@ -1,20 +1,12 @@
 package flower.store;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import java.util.List;
 
-import java.util.*;
-
-@RestController
-public class DeliveryController {
-    private final Delivery deliveryStrategy;
-
-    public DeliveryController() {
-        this.deliveryStrategy = new PostDeliveryStrategy();
-    }
-
-    @GetMapping("/delivery")
-    public String getDeliveryInfo() {
-        return deliveryStrategy.deliver(Arrays.asList(new Flower(), new Flower(), new Flower()));
-    }
+public interface Delivery {
+    String deliver(List<Flower> flowers);
+    Order getOrder();
+    void setOrder(Order order);
+    String getAddress();
+    void setAddress(String address);
+    String getdelivery();
 }
